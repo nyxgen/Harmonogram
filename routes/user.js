@@ -3,6 +3,7 @@ var router = express.Router();
 var expressControllers = require('./../src/services/express/index.js');
 
 router.get('/create', async function(req, res, next) {
+  res.status(201);
   res.send(await expressControllers.createUserController(req.body))
 });
 
@@ -17,6 +18,8 @@ router.get('/login', async function(req, res, next) {
 router.get('/getData', async function(req, res, next) {
   res.send(await expressControllers.getUserDataController(req.body));
 });
+
+
 
 
 module.exports = router;

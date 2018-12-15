@@ -3,16 +3,21 @@ const express = require('express');
 
 const usersRouter = require('./routes/user');
 const dataRouter = require('./routes/data');
+const projectRouter = require('./routes/project');
+const taskRouter = require('./routes/task');
+
 const app = express();
 
 app.use(express.json());
 
 app.use('/data', dataRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
+app.use('/project', projectRouter);
+app.use('/task', taskRouter);
 
-
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(async function(req, res, next) {
+   res.send(createError(404, "Not found", {stack: false}));
+  next();
 });
 
 const server = app.listen(1337, () => {

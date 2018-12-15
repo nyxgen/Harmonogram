@@ -5,12 +5,12 @@ function run(data) {
         console.log(data);
         console.log("Hi");
         db.collection(data.collectionName).get()
-            .then(snapshot => {
+            .then(async snapshot => {
                 var tab = [];
                 snapshot.forEach(doc => {
                     tab.push(doc.id);
                 });
-                return (JSON.stringify(tab, null, 2));
+                return (await JSON.stringify(tab, null, 2));
             })
             .then(response => {
                 resolve(response);

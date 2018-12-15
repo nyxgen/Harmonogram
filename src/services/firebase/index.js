@@ -9,4 +9,8 @@ module.exports = {
     createUser: require("./createUserController.js").run,
     getUserData: require("./getUserDataController.js").run,
     changePassword: require("./changePasswordController.js").run,
-}
+    createProject: require("./createProjectController.js").run,
+    createTask: require("./createTaskController.js").run,
+    addTaskToProject: require("./addTaskToProjectController.js").run,
+    addUserToTask: require("./addUserToTaskController.js").run,
+};

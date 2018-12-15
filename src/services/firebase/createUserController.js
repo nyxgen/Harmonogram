@@ -8,7 +8,7 @@ function run(data) {
         const saltRounds = 8;
         bcrypt.hash(data.password, saltRounds)
             .then(hash => {
-                db.collection("Users").add(
+                db.collection("Users").doc(data.name).set(
                     {
                         name: data.name,
                         surname: data.surname,
