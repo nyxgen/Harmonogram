@@ -7,11 +7,12 @@ const jwtControllers = require('./../jwt/index.js');
 function run(data) {
     return new Promise((resolve, reject) => {
         firebaseControllers.getUserByLogin(data.login)
-            .then((doc) => {
-                return bcryptControllers.compareHash(data.password, doc.data().password);
+            .then(async (doc) => {
+               await bcryptControllers.compareHash(data.password, doc.data().password);
+                return doc
             })
-            .then(async () => {
-                return await jwtControllers.preparePayload(data);
+            .then(async (doc) => {
+                return await jwtControllers.preparePayload(doc);
             })
             .then(payload => {
                 return jwtControllers.sign(payload);

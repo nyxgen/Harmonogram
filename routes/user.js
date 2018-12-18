@@ -12,10 +12,17 @@ router.get('/changePassword', async function(req, res, next) {
 });
 
 router.get('/login', async function(req, res, next) {
-  res.send(await expressControllers.loginController(req.body));
+  try {
+    const response = await expressControllers.loginController(req.body);
+    res.send(response);
+  }
+  catch(err)
+  {
+    res.send(err.message);
+  }
 });
 
-router.get('/getData', async function(req, res, next) {
+router.get('/data', async function(req, res, next) {
   res.send(await expressControllers.getUserDataController(req.body));
 });
 

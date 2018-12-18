@@ -5,20 +5,14 @@ const jwtControllers = require('./../jwt/index.js');
 function run(data) {
 
     return new Promise((resolve, reject) => {
+
         jwtControllers.verify(data.token)
             .then(decoded => {
                 if (decoded) {
-                    return db.collection("Users").where("login", "==", decoded.login).get();
+                    return db.collection("Users").doc(decoded.login).get();
                 }
                 else
-                    return {};
-            })
-            .then(snapshot => {
-                var user;
-                snapshot.forEach(doc => {
-                    user = doc;
-                });
-                return user;
+                    throw(new Error("Verification failed"));
             })
             .then(user => {
                 var response = {
@@ -35,7 +29,7 @@ function run(data) {
                 resolve(response);
             })
             .catch(err => {
-                reject("Can't do that");
+                reject(new Error(err.message));
             });
     });
 }

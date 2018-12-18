@@ -16,7 +16,8 @@ app.use('/project', projectRouter);
 app.use('/task', taskRouter);
 
 app.use(async function(req, res, next) {
-   res.send(createError(404, "Not found", {stack: false}));
+    res.status(404);
+    res.send("Wrong address");
   next();
 });
 

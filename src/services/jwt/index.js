@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    verify: require('./verifyTokenController.js').run,
+    verify: require('./verifyTokenController').run,
     sign: require('./signTokenController.js').run,
     preparePayload: require('./preparePayloadController.js').run,
 };

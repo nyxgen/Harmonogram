@@ -7,15 +7,6 @@ function run(token) {
             if (err) reject(err);
             resolve(response)
         });
-        jwt.verify(token, privateKey)
-            .then(response => {
-                if(response) {
-                    resolve(response)
-                }
-                else {
-                    reject(new Error(" is not correct"));
-                }
-            })
     });
 }
 

@@ -13,4 +13,5 @@ module.exports = {
     createTask: require("./createTaskController.js").run,
     addTaskToProject: require("./addTaskToProjectController.js").run,
     addUserToTask: require("./addUserToTaskController.js").run,
+    getProject: require("./getProjectController.js").run
 };

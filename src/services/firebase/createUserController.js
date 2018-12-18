@@ -8,16 +8,14 @@ function run(data) {
         const saltRounds = 8;
         bcrypt.hash(data.password, saltRounds)
             .then(hash => {
-                db.collection("Users").doc(data.name).set(
+                db.collection("Users").doc(data.login).set(
                     {
                         name: data.name,
                         surname: data.surname,
                         password: hash,
                         login: data.login,
-                        accepted: 0,
                         office: "",
-                        permissionLevel: 0,
-                        token: ""
+                        permissionLevel: 0
                     });
             })
             .then(() => {
