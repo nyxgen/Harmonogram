@@ -12,14 +12,13 @@ function run(data) {
                 return doc
             })
             .then(async (doc) => {
-                return await jwtControllers.preparePayload(doc);
+                return await jwtControllers.preparePayload(doc.data());
             })
             .then(payload => {
                 return jwtControllers.sign(payload);
             })
             .then(token => {
                 resolve(token);
-                console.log("Resolve");
             })
             .catch(err => {
                 reject(new Error(err.message));

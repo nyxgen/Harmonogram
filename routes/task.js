@@ -12,5 +12,4 @@ router.get('/addUser', async function(req, res, next) {
     res.send(await expressControllers.addUserToTaskController(req.body))
 });
 
-
 module.exports = router;

@@ -9,6 +9,9 @@ const taskRouter = require('./routes/task');
 const app = express();
 
 app.use(express.json());
+app.use (function (error, req, res, next){
+    throw new Error("JSON error");
+});
 
 app.use('/data', dataRouter);
 app.use('/user', usersRouter);
@@ -19,6 +22,12 @@ app.use(async function(req, res, next) {
     res.status(404);
     res.send("Wrong address");
   next();
+});
+
+app.use(async function(error, req, res, next) {
+    res.status(415);
+    res.send(error.message);
+    next();
 });
 
 const server = app.listen(1337, () => {

@@ -22,7 +22,8 @@
     "firebase-admin": "^6.4.0",
     "jsonwebtoken": "^8.4.0",
     "jwt-decode": "^2.2.0",
-    "multer": "^1.4.1"
+    "multer": "^1.4.1",
+    "http-errors": "latest"
   },
   "devDependencies": {
     "nodemon": "^1.18.6"

@@ -1,22 +1,14 @@
 'use strict';
 const db = require("./firebase.js");
-const bcrypt = require('bcrypt');
 
-function run(data) {
-
+function run(data, hash) {
     return new Promise((resolve, reject) => {
-        const saltRounds = 8;
-        bcrypt.hash(data.password, saltRounds)
-            .then(async hash => {
-                await db.collection("Users").doc(data.login).set(
-                    {
-                        name: data.name,
-                        surname: data.surname,
-                        password: hash,
-                        login: data.login,
-                        office: "",
-                        permissionLevel: 0
-                    });
+        db.collection("Users").doc(data.login).set({
+                name: data.name,
+                surname: data.surname,
+                password: hash,
+                login: data.login,
+                permissionLevel: 0
             })
             .then(() => {
                 resolve("User's created");

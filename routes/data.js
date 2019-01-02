@@ -18,9 +18,4 @@ router.get('/:collectionName/:documentName/:fieldName', async function (req, res
    res.send(await expressControllers.getFieldValueController(req.params));
 });
 
-
-
-
-
-
 module.exports = router;

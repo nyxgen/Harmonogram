@@ -1,26 +1,15 @@
 'use strict';
 const db = require('./firebase.js');
-const jwtControllers = require('./../jwt/index.js');
 
-function run(data) {
-
+function run(data, decoded) {
     return new Promise((resolve, reject) => {
-
-        jwtControllers.verify(data.token)
-            .then(decoded => {
-                if (decoded) {
-                    return db.collection("Users").doc(decoded.login).get();
-                }
-                else
-                    throw(new Error("Verification failed"));
-            })
+        db.collection("Users").doc(decoded.login).get()
             .then(user => {
-                var response = {
+                const response = {
                     login: user.data().login,
                     name: user.data().name,
                     surname: user.data().surname,
                     accepted: user.data().accepted,
-                    office: user.data().office,
                     permissionLevel: user.data().permissionLevel
                 };
                 return response;
