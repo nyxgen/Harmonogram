@@ -8,7 +8,14 @@ router.get('/create', async function(req, res, next) {
 });
 
 router.get('/changePassword', async function(req, res, next) {
-  res.send(await expressControllers.changePasswordController(req.body));
+  try {
+    const response = await expressControllers.changePasswordController(req.body);
+    res.send(response);
+  }
+  catch(err)
+  {
+    res.send(err.message);
+  }
 });
 
 router.get('/login', async function(req, res, next) {

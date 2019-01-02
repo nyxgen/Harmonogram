@@ -7,8 +7,8 @@ function run(data) {
     return new Promise((resolve, reject) => {
         const saltRounds = 8;
         bcrypt.hash(data.password, saltRounds)
-            .then(hash => {
-                db.collection("Users").doc(data.login).set(
+            .then(async hash => {
+                await db.collection("Users").doc(data.login).set(
                     {
                         name: data.name,
                         surname: data.surname,
@@ -22,7 +22,7 @@ function run(data) {
                 resolve("User's created");
             })
             .catch(err => {
-                reject(err.message);
+                reject(new Error(err.message));
             });   
     })
 }
