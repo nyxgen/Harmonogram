@@ -10,7 +10,7 @@ router.post('/create', async function(req, res, next) {
   }
   catch(err) {
     res.status(404);
-    res.render(err);
+    res.send(err.message);
   }
 });
 
@@ -31,6 +31,7 @@ router.get('/login', async function(req, res, next) {
     res.send(response);
   }
   catch(err) {
+    res.status(422);
     res.send(err.message);
   }
 });
@@ -41,6 +42,7 @@ router.get('/data', async function(req, res, next) {
     res.send(response);
   }
   catch(err) {
+    res.status(422);
     res.send(err.message);
   }
 
